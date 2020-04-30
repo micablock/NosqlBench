@@ -1,0 +1,29 @@
+blocks:
+  - name: block1
+    params:
+      ratio: 2
+    bindings:
+      alpha: Uniform(1,50)
+      beta: Uniform(51,100)
+    statements:
+      - s1: |
+         {alpha}, s1, block 1
+#        params:
+#          ratio: 4
+        tags:
+          name: s1
+      - s2: |
+         {beta}, s2, block 1
+#        params:
+#          ratio: 6
+        tags:
+          name: s2
+
+  - name: block2
+    params:
+      ratio: 8
+    statements:
+      - s1: |
+         {alpha}, Block 2
+        bindings:
+          alpha: Combinations('A-Z;A-Z;0-9;-;A;P;R;')

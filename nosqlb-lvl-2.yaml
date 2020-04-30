@@ -1,0 +1,46 @@
+---
+blocks:
+  - name: schema
+    tags:
+      phase: schema
+    params:
+      prepared: false
+    statements:
+      - create-keyspace: |
+          create keyspace if not exists baselines2
+          with replication = {'class':'SimpleStrategy', 'replication_factor':'1'};
+        tags:
+          name: create-keyspace
+
+      - create-table: |
+          create table if not exists baselines2.keyvalue (
+          key int,
+          value text,
+          primary key (key)
+          );
+        tags:
+          name: create-table
+
+  - name: rampup
+    tags:
+      phase: rampup
+    bindings:
+      row_key: Uniform(5,9999999) -> int
+    statements:
+      - insert_1: |
+          insert into baselines2.keyvalue (key, value)
+          values ( {row_key}, {row_value});
+        bindings:
+          row_value: FirstNames()
+        tags:
+          name: insert_1
+
+      - insert_2: |
+          insert into baselines2.keyvalue (key, value)
+          values ( {row_key}, {row_value});
+        bindings:
+          row_key: Uniform(1,50) -> int
+          row_value: FirstNames()
+        tags:
+          name: insert_2
+          
