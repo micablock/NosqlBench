@@ -1,76 +1,17 @@
-Frequently Used Code : 
+### Objective: 
+To help users with NosqlBench adoption and to improve, make efficient the dev and production DSE stress testing, thereby, accelerating testing cycles and go to production timelines. 
 
-drop table baselines2.keyvalue;
+### What is NosqlBench ? 
+NoSQLBench is a performance testing tool for the NoSQL ecosystem. It brings together features and capabilities that are not found in any other tool.
 
-desc baselines2.keyvalue;
+You can run common testing workloads directly from the command line. 
+You can generate virtual data sets of arbitrary size, with deterministic data and statistically shaped values.
+You can design custom workloads that emulate your application, contained in a single file, based on statement templates - no IDE or coding required.
+You can immediately plot your results in a docker and grafana stack on Linux with a single command line option.
+When needed, you can open the access panels and rewire the runtime behavior of NoSQLBench to do advanced testing, including a full scripting environment with Javascript.
+CQL Support is built into the tool, however, it is more like a machine harness so others can write their own clients for other system’s. 
 
-select * from baselines2.keyvalue;
+### Origins & Current State: 
+The building blocks of this project are rooted in procedural data generation capability was known before as 'Virtual Data Set' and a core runtime and scripting harness called ‘Engine Block’ project. The CQL piece was built and supported within DataStax and battle tested. 
 
-truncate table baselines2.keyvalue;
-
-
-Talking points : 
-
-Part 1:
-
-What is nosqlbench ? 
-origins ? 
-  - data generation capability came from ' Virtual Data Set' and core runtime and scripting harness was from 'EngineBlock'
-who maintains it ? 
-  - March 2020 we open sourced it for the community and other users so they can experience this new way of testing.
-documentation location 
-  - nosqlbench.io
-
-Intro to how we will be doing the virtul workshop ? 
-
-Note:  Flow available in the document we would be using. 
-
-Level by Level : 
-Level 1 - Basics of NoSqlbench
-
-Cycle :
-Cycle determines which statement is selected for execution and also the synthetic payload attached to it.
-
-Activty : 
-Set of statements in some sequence and ratio, activities run over the number of cycle. 
-
-so lets so suppose you say : 
-
-run = 10 Cycles 
-Activity : 
-   S1 - Do A 
-   S2 - Do B
-   ratio of 4:6 
-
-then during the entire cycle - > A occurs 4 times and B occurs 6 times !! 
-   
-Driver : 
-
-Scenario : 
-
-Scenario Script : 
-
-Workload Managed via YAMLS !! 
-So, how do we define all you specific workloads into a YAML file !! 
-
-Experimentation Friendly - > so one workload statment can be interpreted by different drivers example cql driver statments in stdout driver !
-
-ok so lets start with writing a basic yaml test and then lets test it !! 
-
-Level 1 Code : 
-
-Ask them to try : 
-
-Then Level 2 : Coding how it will work with CQL 
-
-- create schema - keyspace and table 
-- insert data 
-
-How that works  .. explain binding functions 
-
-then Level 3 : 
-different phases - main phase 
-
-probably end here !! 
-
-
+In March of 2020, DataStax and the project maintainers open sourced this project, and was renamed to nosqlbench.io. More information on this link.
