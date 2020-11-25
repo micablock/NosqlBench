@@ -1,0 +1,20 @@
+---
+name: doc1
+blocks:
+  - name: block1
+    bindings:
+      partition_id: Mod(5); Hash(); ToString();
+      id: WeightedStrings('DAVID:1');
+      location: WeightedStrings('NY:.5;DALLAS:.25;HOUSTAN:.25');
+      transaction_id: Identity(); Hash(); ToString();
+      time_bucket: WeightedStrings('1514786400000:1;1546322400000:1;1577858400000:1'); ToLong(); AddHashRange(0L,31536000000L); SaveLong('tx_time'); StringDateWrapper('YYYY'); ToLong();
+      datetime_modified: LoadLong('tx_time'); ToDate();
+      name: Template('{} {}', FirstNames(), Identity());
+      memo: HashedLineToString("data.txt");
+      labels: Set(HashRange(3,10), LastNames());
+      balance: Uniform(0,100000); ToLong();
+    
+    
+    statements:
+      - s1: |
+             {partition_id},{id},{location},{transaction_id},{time_bucket},{datetime_modified}, {name},{memo},{labels},{balance}
